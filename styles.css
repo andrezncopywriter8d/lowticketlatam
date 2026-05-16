@@ -172,14 +172,31 @@ img {
 
 .hotspot--offer {
   left: 14%;
-  top: 51.2%;
+  top: 60.1%;
   width: 72%;
-  height: 5.8%;
+  height: 5.3%;
   font-size: clamp(0.76rem, 1.28vw, 1.55rem);
+  border: 0;
+  color: transparent;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  animation: none;
 }
 
 .hotspot--checkout {
   white-space: nowrap;
+}
+
+.hotspot--offer::before,
+.hotspot--offer::after {
+  display: none;
+}
+
+.hotspot--offer:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
 }
 
 .hotspot--final {
@@ -482,10 +499,10 @@ img {
   }
 
   .hotspot--offer {
-    left: 8%;
-    top: 51.1%;
-    width: 84%;
-    height: 6%;
+    left: 10.5%;
+    top: 60.1%;
+    width: 79%;
+    height: 5.4%;
     font-size: clamp(0.82rem, 3.25vw, 1.02rem);
   }
 
