@@ -171,21 +171,15 @@ img {
 }
 
 .hotspot--offer {
-  left: 32.1%;
-  top: 49.2%;
-  width: 39%;
-  height: 10.6%;
-  font-size: clamp(0.58rem, 0.98vw, 1.15rem);
+  left: 14%;
+  top: 51.2%;
+  width: 72%;
+  height: 5.8%;
+  font-size: clamp(0.76rem, 1.28vw, 1.55rem);
 }
 
 .hotspot--checkout {
-  padding-inline: 0.6em;
-  white-space: normal;
-  line-height: 1.08;
-}
-
-.hotspot--checkout::before {
-  display: none;
+  white-space: nowrap;
 }
 
 .hotspot--final {
@@ -489,10 +483,10 @@ img {
 
   .hotspot--offer {
     left: 8%;
-    top: 50.9%;
+    top: 51.1%;
     width: 84%;
-    height: 6.6%;
-    font-size: clamp(0.72rem, 2.8vw, 0.96rem);
+    height: 6%;
+    font-size: clamp(0.82rem, 3.25vw, 1.02rem);
   }
 
   .hotspot--final {
