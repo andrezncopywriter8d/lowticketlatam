@@ -14,6 +14,11 @@ checkoutLinks.forEach((link) => {
   link.setAttribute("href", CHECKOUT_URL);
   link.setAttribute("target", "_blank");
   link.setAttribute("rel", "noopener noreferrer");
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const checkoutWindow = window.open(CHECKOUT_URL, "_blank", "noopener,noreferrer");
+    if (!checkoutWindow) window.location.href = CHECKOUT_URL;
+  });
 });
 
 offerLinks.forEach((link) => {
