@@ -167,16 +167,6 @@ img {
   top: 90.4%;
   width: 79.6%;
   height: 5.6%;
-  color: transparent;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  animation: none;
-}
-
-.v2-hotspot--app::before,
-.v2-hotspot--app::after {
-  display: none;
 }
 
 .v2-hotspot--offer {
@@ -194,6 +184,38 @@ img {
   width: 44%;
   height: 4.55%;
   font-size: clamp(0.75rem, 2.65vw, 1rem);
+}
+
+.v2-hotspot--hero,
+.v2-hotspot--app,
+.v2-hotspot--offer,
+.v2-hotspot--final {
+  border: 0;
+  color: transparent;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  animation: none;
+}
+
+.v2-hotspot--hero::before,
+.v2-hotspot--hero::after,
+.v2-hotspot--app::before,
+.v2-hotspot--app::after,
+.v2-hotspot--offer::before,
+.v2-hotspot--offer::after,
+.v2-hotspot--final::before,
+.v2-hotspot--final::after {
+  display: none;
+}
+
+.v2-hotspot--hero:hover,
+.v2-hotspot--app:hover,
+.v2-hotspot--offer:hover,
+.v2-hotspot--final:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
 }
 
 .v2-faq {
