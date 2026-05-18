@@ -219,8 +219,8 @@ img {
 .v2-faq {
   position: absolute;
   z-index: 7;
-  left: 10.6%;
-  top: 33.55%;
+  left: 10.5%;
+  top: 51.25%;
   width: 78.6%;
   display: grid;
   gap: clamp(9px, 2.15vw, 18px);
