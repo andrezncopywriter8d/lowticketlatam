@@ -22,38 +22,26 @@ function syncCheckoutLinks() {
 
 function removeCartPandaLegalFootnote() {
   Array.from(document.body.childNodes).forEach((node) => {
-    const text = node.textContent?.toLowerCase() || "";
-    const isCartPandaLegal =
-      text.includes("cartpanda inc.") ||
-      text.includes("review legal terms of use") ||
-      text.includes("privacy policy") ||
+    const text = node.textContent?.replace(/\s+/g, " ").trim().toLowerCase() || "";
+    const isLegalFooter =
+      text.includes("cartpanda inc.") &&
+      text.includes("review legal terms of use") &&
+      text.includes("privacy policy") &&
       text.includes("contact us");
 
-    if (!isCartPandaLegal) return;
-
-    if (node.nodeType === Node.TEXT_NODE) {
-      node.remove();
-      return;
-    }
-
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      const element = node;
-      const isPageElement = element.classList?.contains("v2-shell") || element.classList?.contains("v2-floating");
-      if (!isPageElement) element.remove();
-    }
-  });
-
-  document.querySelectorAll("body > a").forEach((link) => {
-    if (link.textContent.trim().toLowerCase() === "here") link.remove();
+    if (!isLegalFooter) return;
+    if (node.nodeType === Node.TEXT_NODE) node.remove();
+    if (node.nodeType === Node.ELEMENT_NODE && !node.classList?.contains("v2-shell")) node.remove();
   });
 }
 
-checkoutLinks.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-    const checkoutWindow = window.open(CHECKOUT_URL, "_blank", "noopener,noreferrer");
-    if (!checkoutWindow) window.location.href = CHECKOUT_URL;
-  });
+document.addEventListener("click", (event) => {
+  const checkoutLink = event.target.closest(".js-checkout");
+  if (!checkoutLink) return;
+
+  event.preventDefault();
+  const checkoutWindow = window.open(CHECKOUT_URL, "_blank", "noopener,noreferrer");
+  if (!checkoutWindow) window.location.href = CHECKOUT_URL;
 });
 
 offerLinks.forEach((link) => {
@@ -81,7 +69,10 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.1 }
 );
 
-revealItems.forEach((item) => revealObserver.observe(item));
+revealItems.forEach((item) => {
+  item.classList.add("is-visible");
+  revealObserver.observe(item);
+});
 
 function updateFloatingButton() {
   if (!floatingBuy) return;

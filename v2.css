@@ -154,10 +154,10 @@ img {
 }
 
 .v2-hotspot--hero {
-  left: 8.4%;
-  top: 48.25%;
-  width: 52.7%;
-  height: 5.6%;
+  left: 8.35%;
+  top: 48.2%;
+  width: 52.8%;
+  height: 5.65%;
 }
 
 .v2-hotspot--app {
@@ -168,32 +168,38 @@ img {
 }
 
 .v2-hotspot--offer {
-  left: 8.9%;
-  top: 35.9%;
-  width: 82.2%;
-  height: 8.2%;
+  left: 8.75%;
+  top: 35.85%;
+  width: 82.5%;
+  height: 8.25%;
   border-radius: 18px;
   font-size: clamp(1.08rem, 4.45vw, 1.48rem);
 }
 
 .v2-hotspot--final {
-  left: 45.8%;
-  top: 25.15%;
-  width: 44.8%;
-  height: 4.7%;
-  font-size: clamp(0.75rem, 2.65vw, 1rem);
+  left: 46.1%;
+  top: 25.22%;
+  width: 44.2%;
+  height: 4.55%;
+  font-size: clamp(0.72rem, 2.45vw, 0.95rem);
 }
 
 .v2-hotspot--hero,
 .v2-hotspot--app,
 .v2-hotspot--offer,
 .v2-hotspot--final {
-  border: 0;
-  color: transparent;
-  background: transparent;
-  box-shadow: none;
-  text-shadow: none;
-  animation: none;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  color: #fff;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 30%, transparent 68%, rgba(255, 255, 255, 0.16)),
+    linear-gradient(180deg, #48c881 0%, #28b462 52%, #0c8e3f 100%);
+  box-shadow:
+    0 14px 24px rgba(11, 97, 39, 0.26),
+    0 5px 0 #086c31,
+    inset 0 2px 0 rgba(255, 255, 255, 0.36),
+    inset 0 0 0 4px rgba(11, 105, 44, 0.18);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
+  animation: v2CtaPulse 1.75s ease-in-out infinite;
 }
 
 .v2-hotspot--hero::before,
@@ -204,16 +210,21 @@ img {
 .v2-hotspot--offer::after,
 .v2-hotspot--final::before,
 .v2-hotspot--final::after {
-  display: none;
+  display: block;
 }
 
 .v2-hotspot--hero:hover,
 .v2-hotspot--app:hover,
 .v2-hotspot--offer:hover,
 .v2-hotspot--final:hover {
-  filter: none;
-  transform: none;
-  box-shadow: none;
+  filter: saturate(1.08) brightness(1.04);
+  transform: translateY(-2px) scale(1.012);
+  box-shadow:
+    0 0 0 6px rgba(57, 188, 105, 0.18),
+    0 18px 30px rgba(11, 97, 39, 0.34),
+    0 5px 0 #086c31,
+    inset 0 2px 0 rgba(255, 255, 255, 0.42),
+    inset 0 0 0 4px rgba(11, 105, 44, 0.18);
 }
 
 .v2-faq {
@@ -363,6 +374,12 @@ img {
   .v2-hotspot--offer {
     left: 8.9%;
     width: 82.3%;
+  }
+
+  .v2-hotspot--final {
+    left: 46.1%;
+    width: 44.2%;
+    font-size: clamp(0.62rem, 2.35vw, 0.82rem);
   }
 
   .v2-faq {
