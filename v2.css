@@ -219,11 +219,11 @@ img {
 .v2-faq {
   position: absolute;
   z-index: 7;
-  left: 10.3%;
-  top: 51.2%;
-  width: 78.8%;
+  left: 10.6%;
+  top: 33.55%;
+  width: 78.6%;
   display: grid;
-  gap: 17px;
+  gap: clamp(9px, 2.15vw, 18px);
 }
 
 .v2-faq__item {
@@ -237,13 +237,13 @@ img {
 
 .v2-faq__item summary {
   position: relative;
-  min-height: clamp(44px, 7.4vw, 70px);
+  min-height: clamp(42px, 7.55vw, 72px);
   display: flex;
   align-items: center;
   padding: 0 54px 0 clamp(18px, 4vw, 38px);
   color: #20460d;
   cursor: pointer;
-  font-size: clamp(0.88rem, 3.4vw, 1.3rem);
+  font-size: clamp(0.82rem, 3.15vw, 1.24rem);
   font-weight: 800;
   list-style: none;
 }
@@ -366,7 +366,7 @@ img {
   }
 
   .v2-faq {
-    gap: 10px;
+    gap: 9px;
   }
 }
 
