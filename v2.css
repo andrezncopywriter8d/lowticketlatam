@@ -33,26 +33,24 @@ img {
 
 .v2-shell {
   display: grid;
-  gap: clamp(10px, 1.6vw, 22px);
+  gap: 0;
   width: min(100%, 941px);
   margin-inline: auto;
-  padding: clamp(7px, 1.2vw, 14px);
+  padding: 0;
   background:
     linear-gradient(180deg, rgba(242, 237, 211, 0.48), rgba(248, 243, 220, 0.78)),
     #eef0d8;
-  box-shadow: 0 0 80px rgba(8, 39, 11, 0.2);
+  box-shadow: none;
 }
 
 .v2-section {
   position: relative;
   overflow: hidden;
-  border-radius: clamp(18px, 4vw, 38px);
+  border-radius: 0;
   isolation: isolate;
   line-height: 0;
   background: var(--cream-soft);
-  box-shadow:
-    0 18px 36px rgba(25, 68, 16, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.66);
+  box-shadow: none;
   opacity: 0;
   transform: translateY(18px) scale(0.992);
   transition: opacity 700ms ease, transform 700ms ease, filter 700ms ease;
@@ -349,12 +347,12 @@ img {
 
 @media (max-width: 520px) {
   .v2-shell {
-    gap: 8px;
-    padding: 6px;
+    gap: 0;
+    padding: 0;
   }
 
   .v2-section {
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .v2-hotspot--hero {
