@@ -168,19 +168,19 @@ img {
 }
 
 .v2-hotspot--offer {
-  left: 9%;
-  top: 35.85%;
-  width: 82%;
-  height: 8.1%;
+  left: 8.9%;
+  top: 35.9%;
+  width: 82.2%;
+  height: 8.2%;
   border-radius: 18px;
   font-size: clamp(1.08rem, 4.45vw, 1.48rem);
 }
 
 .v2-hotspot--final {
-  left: 46.2%;
-  top: 25.25%;
-  width: 44%;
-  height: 4.55%;
+  left: 45.8%;
+  top: 25.15%;
+  width: 44.8%;
+  height: 4.7%;
   font-size: clamp(0.75rem, 2.65vw, 1rem);
 }
 
