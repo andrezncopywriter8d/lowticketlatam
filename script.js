@@ -17,34 +17,72 @@ const cartPandaLegalPatterns = [
   "contact us",
 ];
 
-function removeCartPandaLegalFootnote() {
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  const textNodes = [];
+function syncCheckoutLinks() {
+  document.querySelectorAll(".js-checkout").forEach((link) => {
+    if (link.getAttribute("href") !== CHECKOUT_URL) link.setAttribute("href", CHECKOUT_URL);
+    if (link.getAttribute("target") !== "_blank") link.setAttribute("target", "_blank");
+    if (link.getAttribute("rel") !== "noopener noreferrer") {
+      link.setAttribute("rel", "noopener noreferrer");
+    }
+  });
+}
 
-  while (walker.nextNode()) {
-    textNodes.push(walker.currentNode);
+function removeCartPandaLegalFootnote() {
+  const directCartPandaNode = Array.from(document.body.childNodes).find((node) => {
+    const text = node.textContent?.toLowerCase() || "";
+    return text.includes("cartpanda inc.") || text.includes("review legal terms of use");
+  });
+
+  if (directCartPandaNode) {
+    Array.from(document.body.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node;
+        const text = element.textContent?.toLowerCase() || "";
+        const isLanding = element.classList?.contains("landing") || element.classList?.contains("floating-buy");
+
+        if (!isLanding && (text.includes("cartpanda inc.") || text.includes("review legal terms of use"))) {
+          element.remove();
+        }
+
+        if (!isLanding && element.tagName === "A" && element.textContent.trim().toLowerCase() === "here") {
+          element.remove();
+        }
+      }
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent?.toLowerCase() || "";
+        if (
+          text.includes("cartpanda inc.") ||
+          text.includes("review legal terms of use") ||
+          text.includes("privacy policy") ||
+          text.includes("contact us")
+        ) {
+          node.remove();
+        }
+      }
+    });
   }
 
-  textNodes.forEach((node) => {
-    const text = node.textContent.toLowerCase();
-    const isCartPandaLegal = cartPandaLegalPatterns.every((pattern) => text.includes(pattern));
+  Array.from(document.querySelectorAll("body *:not(script):not(style)")).forEach((element) => {
+    const text = element.textContent?.toLowerCase() || "";
+    const hasCartPandaLegal =
+      text.includes("cartpanda inc.") &&
+      cartPandaLegalPatterns.slice(1).some((pattern) => text.includes(pattern));
 
-    if (!isCartPandaLegal) return;
+    if (!hasCartPandaLegal) return;
 
-    const legalElement = node.parentElement?.closest("div, p, small, footer, section");
-    if (legalElement && !["BODY", "HTML"].includes(legalElement.tagName)) {
-      legalElement.remove();
-      return;
+    const childAlsoMatches = Array.from(element.children).some((child) => {
+      const childText = child.textContent?.toLowerCase() || "";
+      return childText.includes("cartpanda inc.");
+    });
+
+    if (!childAlsoMatches) {
+      element.remove();
     }
-
-    node.remove();
   });
 }
 
 checkoutLinks.forEach((link) => {
-  link.setAttribute("href", CHECKOUT_URL);
-  link.setAttribute("target", "_blank");
-  link.setAttribute("rel", "noopener noreferrer");
   link.addEventListener("click", (event) => {
     event.preventDefault();
     const checkoutWindow = window.open(CHECKOUT_URL, "_blank", "noopener,noreferrer");
@@ -86,10 +124,16 @@ function updateFloatingButton() {
 window.addEventListener("scroll", updateFloatingButton, { passive: true });
 updateFloatingButton();
 
+syncCheckoutLinks();
 removeCartPandaLegalFootnote();
-new MutationObserver(removeCartPandaLegalFootnote).observe(document.body, {
+new MutationObserver(() => {
+  syncCheckoutLinks();
+  removeCartPandaLegalFootnote();
+}).observe(document.body, {
   childList: true,
   subtree: true,
+  attributes: true,
+  attributeFilter: ["href", "target", "rel", "style", "class"],
 });
 
 document.querySelectorAll(".faq-item").forEach((item) => {

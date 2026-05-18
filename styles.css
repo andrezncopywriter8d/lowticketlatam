@@ -171,24 +171,29 @@ img {
 }
 
 .hotspot--offer {
-  left: 14.5%;
-  top: 60%;
-  width: 71%;
-  height: 5.4%;
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  border-radius: 18px;
-  color: #fff;
+  left: 14.5% !important;
+  top: 60% !important;
+  width: 71% !important;
+  height: 5.4% !important;
+  display: flex !important;
+  border: 1px solid rgba(255, 255, 255, 0.62) !important;
+  border-radius: 18px !important;
+  color: #fff !important;
   background:
     linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 28%, transparent 68%, rgba(255, 255, 255, 0.18)),
-    linear-gradient(180deg, #47c982 0%, #28ad60 52%, #18934a 100%);
+    linear-gradient(180deg, #47c982 0%, #28ad60 52%, #18934a 100%) !important;
   box-shadow:
     0 12px 22px rgba(19, 111, 55, 0.32),
     0 4px 0 #0d6f34,
     inset 0 2px 0 rgba(255, 255, 255, 0.42),
-    inset 0 0 0 4px rgba(13, 112, 50, 0.2);
-  font-size: clamp(0.74rem, 1.2vw, 1.42rem);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
-  animation: ctaPulse 1.7s ease-in-out infinite;
+    inset 0 0 0 4px rgba(13, 112, 50, 0.2) !important;
+  font-size: clamp(1.05rem, 1.78vw, 2.15rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16) !important;
+  animation: ctaPulse 1.7s ease-in-out infinite !important;
+  opacity: 1 !important;
+  transform-origin: center;
 }
 
 .hotspot--checkout {
@@ -511,12 +516,12 @@ img {
   }
 
   .hotspot--offer {
-    left: 6.8%;
-    top: 60%;
-    width: 86.4%;
-    height: 5.6%;
-    border-radius: 15px;
-    font-size: clamp(0.78rem, 3.25vw, 1rem);
+    left: 6.8% !important;
+    top: 60% !important;
+    width: 86.4% !important;
+    height: 5.6% !important;
+    border-radius: 15px !important;
+    font-size: clamp(1rem, 4.4vw, 1.28rem) !important;
   }
 
   .hotspot--final {
