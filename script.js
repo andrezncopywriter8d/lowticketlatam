@@ -1,4 +1,4 @@
-const CHECKOUT_URL = "https://SEU-LINK-DE-CHECKOUT-AQUI.com";
+const CHECKOUT_URL = "https://seguro.nutriinteligente.site/checkout/210182806:1";
 
 if (window.location.hash === "#oferta") {
   history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -9,6 +9,37 @@ const checkoutLinks = document.querySelectorAll(".js-checkout");
 const offerLinks = document.querySelectorAll(".js-offer-link");
 const floatingBuy = document.querySelector(".floating-buy");
 const revealItems = document.querySelectorAll(".reveal");
+
+const cartPandaLegalPatterns = [
+  "cartpanda inc.",
+  "review legal terms of use",
+  "privacy policy",
+  "contact us",
+];
+
+function removeCartPandaLegalFootnote() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  textNodes.forEach((node) => {
+    const text = node.textContent.toLowerCase();
+    const isCartPandaLegal = cartPandaLegalPatterns.every((pattern) => text.includes(pattern));
+
+    if (!isCartPandaLegal) return;
+
+    const legalElement = node.parentElement?.closest("div, p, small, footer, section");
+    if (legalElement && !["BODY", "HTML"].includes(legalElement.tagName)) {
+      legalElement.remove();
+      return;
+    }
+
+    node.remove();
+  });
+}
 
 checkoutLinks.forEach((link) => {
   link.setAttribute("href", CHECKOUT_URL);
@@ -54,6 +85,12 @@ function updateFloatingButton() {
 
 window.addEventListener("scroll", updateFloatingButton, { passive: true });
 updateFloatingButton();
+
+removeCartPandaLegalFootnote();
+new MutationObserver(removeCartPandaLegalFootnote).observe(document.body, {
+  childList: true,
+  subtree: true,
+});
 
 document.querySelectorAll(".faq-item").forEach((item) => {
   item.addEventListener("toggle", () => {
