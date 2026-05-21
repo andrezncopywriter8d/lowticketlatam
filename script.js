@@ -1,4 +1,4 @@
-const CHECKOUT_URL = "https://pay.hotmart.com/Q105930297M";
+const CHECKOUT_URL = "https://pay.hotmart.com/Q105930297M?checkoutMode=10";
 
 if (window.location.hash === "#oferta") {
   history.replaceState(null, "", window.location.pathname + window.location.search);
