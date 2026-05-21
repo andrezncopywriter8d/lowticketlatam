@@ -1,11 +1,26 @@
+const CHECKOUT_URL = "https://pay.hotmart.com/Q105930297M";
+
 if (window.location.hash === "#oferta") {
   history.replaceState(null, "", window.location.pathname + window.location.search);
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
+const checkoutLinks = document.querySelectorAll(".js-checkout");
 const offerLinks = document.querySelectorAll(".js-offer-link");
 const floatingBuy = document.querySelector(".floating-buy");
 const revealItems = document.querySelectorAll(".reveal");
+
+function syncCheckoutLinks() {
+  checkoutLinks.forEach((link) => {
+    if (link.getAttribute("href") !== CHECKOUT_URL) link.setAttribute("href", CHECKOUT_URL);
+  });
+}
+
+checkoutLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    link.setAttribute("href", CHECKOUT_URL);
+  });
+});
 
 offerLinks.forEach((link) => {
   link.setAttribute("href", "#oferta");
@@ -40,6 +55,7 @@ function updateFloatingButton() {
 
 window.addEventListener("scroll", updateFloatingButton, { passive: true });
 updateFloatingButton();
+syncCheckoutLinks();
 
 document.querySelectorAll(".faq-item").forEach((item) => {
   item.addEventListener("toggle", () => {
